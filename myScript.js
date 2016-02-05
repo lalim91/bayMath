@@ -27,7 +27,7 @@ $(document).ready(function(){
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
 function store_number(button_value){
-    input_storage[current_index] = button_value;
+    input_storage[current_index] += button_value;
     update_display();
 }
 
@@ -72,4 +72,47 @@ function update_display(){
 //@global
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
-function
+function choose_equation(op1,op2,operator){
+    var result = "";
+    switch (operator) {
+        case '+':
+           result = op1 + op2;
+
+            break;
+        case "-":
+            result = op1 - op2;
+            break;
+        case 'x':
+            result = op1 * op2;
+            break;
+        case '/':
+            result = op1 / op2;
+            break;
+    }
+    console.log('this is the :', result);
+
+    input_storage = [''];
+    input_storage[current_index] = result;
+    update_display();
+}
+
+//@purpose: iterate through input_storage to find what ops and operator
+//@params:
+    //none
+//@return
+    //none
+//@global
+    //input_storage: where everything clicked will be stored in strings
+    //current_index: the index of the most current position; where we are right now
+function do_math(){
+    for(var i=0; i<input_storage.length; i++){
+        var num1 = Number(input_storage[0]);
+        console.log(typeof num1);
+        var num2 = Number(input_storage[2]);
+        console.log(typeof num2);
+        var sign = input_storage[1];
+        console.log(typeof sign);
+        choose_equation(num1,num2,sign);
+
+    }
+}
