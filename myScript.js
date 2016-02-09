@@ -5,26 +5,30 @@ var clear = false;
 
 $(document).ready(function(){
 
-    $('.number').on('click', function(){//get the values of number and store them in store_number function
+    eye_blink_init();
+
+    $('.number>button').on('click', function(){//get the values of number and store them in store_number function
         store_number($(this).text());
     });
 
-    $('.operator').on('click', function(){
+    $('.operator>button').on('click', function(){
         store_operator($(this).text());
     });
 
-    $('#equal').on('click', function(){
+    $('#equal>button').on('click', function(){
         clear = true;
         do_math();
         update_display();
     });
 
-    $('#clear').on('click', function(){
+    $('#clear>button').on('click', function(){
         clear = true;
         clear_display();
     });
 
-    $('')
+    $('.negative>button').on('click', function(){
+
+    })
 });
 
 //@purpose:store numbers that are clicked in a variable; update display
@@ -55,6 +59,17 @@ function store_operator(button_value){
     input_storage[current_index] = "";
     update_display();
 }
+
+//@purpose:changing input_storage[current_index] to negative; change the display to negative
+//@params:
+//button_value
+//@return
+//none
+//@global
+//input_storage: where everything clicked will be stored in strings
+//current_index: the index of the most current position; where we are right now
+
+
 
 //@purpose:display whatever is in the array input_storage
 //@params:
@@ -132,9 +147,9 @@ function clear_display(){
         for (var i = 0; input_storage.length > 1 && i < input_storage.length; i++) {
             if (!isNaN(input_storage[i])) {
                 if (num1 == null) {
-                    num1 = Number(input_storage[i]);
+                    num1 = parseFloat(input_storage[i]);
                 } else {
-                    num2 = Number(input_storage[i]);
+                    num2 = parseFloat(input_storage[i]);
                 }
             } else if (op_array.indexOf(input_storage[i]) > (-1)) {
                 operator = input_storage[i];
@@ -150,7 +165,30 @@ function clear_display(){
             }
         }
         update_display();
+        fist_bump()
+    }
+
+function fist_bump(){
+    $("#fist_bump")[0].play();
+}
+function eye_blink_init(){
+    var x = Math.floor(Math.random()*14000)+1000;
+    setTimeout(eye_blink,x);
+    //console.log('eye blink started');
+}
+function eye_blink(){
+    //console.log('eye blink called');
+    $('.eye').toggleClass('eye_blink');
+    if($('.eye').hasClass('eye_blink')){
+        setTimeout(eye_blink,500);
+        //console.log('blinking, starting unblink timer')
+    }else{
+        //console.log('unblinking, setting next blink')
+        var x = Math.floor(Math.random()*4000)+1000;
+        setTimeout(eye_blink,x);
     }
 
 
+
+}
 
