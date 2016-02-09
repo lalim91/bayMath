@@ -27,7 +27,13 @@ $(document).ready(function(){
     });
 
     $('.negative>button').on('click', function(){
+        negative_number(input_storage[current_index]);
+        update_display();
+    });
 
+    $('.percent>button').on('click', function(){
+        percentage(input_storage[current_index]);
+        update_display();
     })
 });
 
@@ -68,7 +74,23 @@ function store_operator(button_value){
 //@global
 //input_storage: where everything clicked will be stored in strings
 //current_index: the index of the most current position; where we are right now
+function negative_number(number) {
+    if (number != 0) {
+    input_storage[current_index] *= -1;
+    }
+}
 
+//@purpose:change number into a percentage; multiplying the number by .01
+//@params:
+//button_value
+//@return
+//none
+//@global
+//input_storage: where everything clicked will be stored in strings
+//current_index: the index of the most current position; where we are right now
+function percentage(number) {
+    input_storage[current_index]*=.01;
+}
 
 
 //@purpose:display whatever is in the array input_storage
@@ -168,6 +190,13 @@ function clear_display(){
         fist_bump()
     }
 
+//@purpose: play the audio clip from audio source
+//@params:
+    //none
+//@return
+    //none
+//@global
+    //none
 function fist_bump(){
     $("#fist_bump")[0].play();
 }
@@ -187,8 +216,6 @@ function eye_blink(){
         var x = Math.floor(Math.random()*4000)+1000;
         setTimeout(eye_blink,x);
     }
-
-
-
 }
+
 
