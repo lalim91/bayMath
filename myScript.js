@@ -1,5 +1,6 @@
 var input_storage = [''];
 var current_index = 0;
+var clear = false;
 
 
 $(document).ready(function(){
@@ -13,9 +14,17 @@ $(document).ready(function(){
     });
 
     $('#equal').on('click', function(){
-       do_math();
+        clear = true;
+        do_math();
+        update_display();
     });
 
+    $('#clear').on('click', function(){
+        clear = true;
+        clear_display();
+    });
+
+    $('')
 });
 
 //@purpose:store numbers that are clicked in a variable; update display
@@ -54,13 +63,28 @@ function store_operator(button_value){
     //none
 //@global
     //input_storage: where everything clicked will be stored in strings
-function update_display(){
-    var array_to_str = "";
-    for(var i=0; i<input_storage.length; i++){
-        array_to_str += input_storage[i];
+function update_display() {
+    var output = "";
+    for (var i = 0; i < input_storage.length; i++) {
+        output += input_storage[i];
     }
-    $('#display').text(array_to_str);
+    $('#display').text(output);
 }
+
+//@purpose:clear the display
+//@params:
+//none
+//@return
+//none
+//@global
+//input_storage: where everything clicked will be stored in strings
+
+function clear_display(){
+    input_storage = [''];
+    current_index = 0;
+    update_display();
+}
+
 
 //@purpose: do math based from parameters; decide which equation to use
 //@params:
@@ -72,29 +96,24 @@ function update_display(){
 //@global
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
-function choose_equation(op1,op2,operator){
-    var result = "";
-    switch (operator) {
-        case '+':
-           result = op1 + op2;
-
-            break;
-        case "-":
-            result = op1 - op2;
-            break;
-        case 'x':
-            result = op1 * op2;
-            break;
-        case '/':
-            result = op1 / op2;
-            break;
+    function choose_equation(op1, op2, operator) {
+        var result;
+        switch (operator) {
+            case '+':
+                result = op1 + op2;
+                break;
+            case "-":
+                result = op1 - op2;
+                break;
+            case 'x':
+                result = op1 * op2;
+                break;
+            case '/':
+                result = op1 / op2;
+                break;
+        }
+        return result;
     }
-    console.log('this is the :', result);
-
-    input_storage = [''];
-    input_storage[current_index] = result;
-    update_display();
-}
 
 //@purpose: iterate through input_storage to find what ops and operator
 //@params:
@@ -104,15 +123,34 @@ function choose_equation(op1,op2,operator){
 //@global
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
-function do_math(){
-    for(var i=0; i<input_storage.length; i++){
-        var num1 = Number(input_storage[0]);
-        console.log(typeof num1);
-        var num2 = Number(input_storage[2]);
-        console.log(typeof num2);
-        var sign = input_storage[1];
-        console.log(typeof sign);
-        choose_equation(num1,num2,sign);
-
+    function do_math() {
+        var num1 = null,
+            num2 = null,
+            operator = null,
+            op_array = ['+', "-", 'x', '/'],
+            result=null;
+        for (var i = 0; input_storage.length > 1 && i < input_storage.length; i++) {
+            if (!isNaN(input_storage[i])) {
+                if (num1 == null) {
+                    num1 = Number(input_storage[i]);
+                } else {
+                    num2 = Number(input_storage[i]);
+                }
+            } else if (op_array.indexOf(input_storage[i]) > (-1)) {
+                operator = input_storage[i];
+            }
+            if (num1!=null && num2!=null && operator!=null){
+                result= choose_equation(num1, num2, operator);
+                input_storage[i]=result;
+                input_storage.splice(0,2);
+                i = -1;
+                num1= null;
+                num2= null;
+                operator= null;
+            }
+        }
+        update_display();
     }
-}
+
+
+
