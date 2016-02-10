@@ -25,7 +25,7 @@ body{
     width: 80%;
     height: 250px;
     position: relative;
-    left: 17%;
+    left: 12%;
     top: 18%;
     text-align: center;
     font-size: 8vh;
@@ -38,8 +38,7 @@ div.col-xs-12 { /*display row*/
     border:1px solid black;
     border-radius: 30%;
     margin: .5%;
-    height: 100%;
-    width: 95%;
+    width: 20vw;
 }
 div.col-xs-3 { /*container for button*/
     position: relative;
@@ -51,9 +50,9 @@ div.col-xs-3 { /*container for button*/
 .col-xs-3 button { /*button*/
     position: relative;
     border-radius: 56%;
-    height:100%;
-    margin:.5%;
-    width:100%;
+    height: 6vh;
+    margin: .5%;
+    width: 4vw;
     padding:0;
     background-color: transparent;
     font-size: 2.25vh;
@@ -70,9 +69,9 @@ div.col-xs-6 { /*zero div*/
 .col-xs-6 button { /*zero button*/
     position: relative;
     border-radius: 48%;
-    height:100%;
+    height:6vh;
     margin:.5%;
-    width:100%;
+    width:8vw;
     padding: 0;
     background-color: transparent;
 }

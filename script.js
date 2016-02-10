@@ -1,39 +1,36 @@
-var input_storage = [''];
-var current_index = 0;
-var clear = false;
+var input_storage = [''];//main storage array container
+var current_index = 0;//index of current location in the index; (ex: the i in a for loop)
 
 
-$(document).ready(function(){
+$(document).ready(function(){ //document.ready function
 
-    eye_blink_init();
+    eye_blink_init();//call eye_blink_init function;
 
-    $('.number>button').on('click', function(){//get the values of number and store them in store_number function
-        store_number($(this).text());
+    $('.number>button').on('click', function(){//on 'click' method: target class number>button
+        store_number($(this).text());//get the values of number and store them in store_number() function
     });
 
-    $('.operator>button').on('click', function(){
-        store_operator($(this).text());
+    $('.operator>button').on('click', function(){//on 'click' method: target class operator>button
+        store_operator($(this).text());//get the values of operator and store them in store_operator() function
     });
 
-    $('#equal>button').on('click', function(){
-        clear = true;
-        do_math();
-        update_display();
+    $('#equal>button').on('click', function(){//on 'click' method: target id equal>button
+        do_math();//call function do_math() function
+        update_display();//call function update_display() function
     });
 
-    $('#clear>button').on('click', function(){
-        clear = true;
-        clear_display();
+    $('#clear>button').on('click', function(){//on 'click' method: target id clear>button
+        clear_display();//call clear_display() function
     });
 
-    $('.negative>button').on('click', function(){
-        negative_number(input_storage[current_index]);
-        update_display();
+    $('.negative>button').on('click', function(){//on 'click' method: target class negative>button
+        negative_number(input_storage[current_index]);//call negative_number(input_storage[current_index])function; parameter: input_storage[current_index]
+        update_display();//call update_display() function
     });
 
-    $('.percent>button').on('click', function(){
-        percentage(input_storage[current_index]);
-        update_display();
+    $('.percent>button').on('click', function(){//on 'click' method: target class percent>button
+        percentage(input_storage[current_index]);//call percentage(input_storage[current_index]); parameter: input_storage[current_index]
+        update_display();//call update_display() function
     })
 });
 
@@ -45,17 +42,15 @@ $(document).ready(function(){
 //@global
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
-function store_number(button_value){
-    if (typeof input_storage[current_index] == "number"){
-        input_storage[current_index] = button_value;
-    }else if (input_storage[current_index] == "error"){
-        input_storage[current_index] = button_value;
-        }
-    else{
-        input_storage[current_index] += button_value;
+function store_number(button_value){//declare function store_number(button_value);parameter: button_value
+    if (typeof input_storage[current_index] == "number"){//if conditional: if: type of input_storage[current_index] is equal to "number"
+        input_storage[current_index] = button_value;//button_value is assigned to input_storage[current_index]
+    }else if (input_storage[current_index] == "error"){//else if:input_storage[current_index] is equal to "error"
+        input_storage[current_index] = button_value;//input_storage[current_index] is assigned button value; resets the array
+        } else{//else
+        input_storage[current_index] += button_value;//button_value is added to input_storage[current_index]
     }
-
-    update_display();
+    update_display();//call update_display() function
 }
 
 //@purpose:store operators that are clicked in a variable; update display
@@ -66,20 +61,18 @@ function store_number(button_value){
 //@global
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
-function store_operator(button_value){
-    if ((input_storage[current_index]) == ""){
-        (input_storage[current_index-1]) = button_value;
-    }else if (input_storage[current_index] == "error"){
-        clear_display();
+function store_operator(button_value){//declare function store_operator(button_value);parameter: button_value
+    if ((input_storage[current_index]) == ""){//if conditional: if: type of input_storage[current_index] is equal to "" (empty string)
+        (input_storage[current_index-1]) = button_value;//input_storage[current_index-1] is assigned button value (-1 because current_index increments to a "" (empty string)
+    }else if (input_storage[current_index] == "error"){//else if:input_storage[current_index] is equal to "error"
+        clear_display();//call clear_display() function
+    } else{//else
+        current_index +=1;//increment current index by 1 (so the operator won't concatenate to num1)
+        input_storage[current_index] = button_value;//button_value is assigned to input_storage[current_index]
+        current_index +=1;//increment current index by 1 (so num2 won't concatenate to operator)
+        input_storage[current_index] = "";//(empty string "") is assigned to input_storage[current_index] (so num2 won't be undefined
     }
-    else{
-        current_index +=1;
-        input_storage[current_index] = button_value;
-        current_index +=1;
-        input_storage[current_index] = "";
-    }
-
-    update_display();
+    update_display();//call update_display() function
 }
 
 //@purpose:changing input_storage[current_index] to negative; change the display to negative
@@ -90,9 +83,9 @@ function store_operator(button_value){
 //@global
 //input_storage: where everything clicked will be stored in strings
 //current_index: the index of the most current position; where we are right now
-function negative_number(number) {
-    if (number != 0) {
-    input_storage[current_index] *= -1;
+function negative_number(number){//declare function negative_number();
+    if (number != 0) {{//if conditional: if: number does not equal zero
+    input_storage[current_index] *= -1;//multiply input_storage[current_index] by (-1)
     }
 }
 
@@ -104,8 +97,8 @@ function negative_number(number) {
 //@global
 //input_storage: where everything clicked will be stored in strings
 //current_index: the index of the most current position; where we are right now
-function percentage(number) {
-    input_storage[current_index]*=.01;
+function percentage(){//declare function percentage()
+    input_storage[current_index]*=.01;//multiply input_storage[current_index] by (.01)
 }
 
 
@@ -116,8 +109,8 @@ function percentage(number) {
     //none
 //@global
     //input_storage: where everything clicked will be stored in strings
-function update_display() {
-    var output = "";
+function update_display(){//declare function update_display()
+    var output = "";//declare local variable "output"; assign "" (empty string)
     for (var i = 0; i < input_storage.length; i++) {
         output += input_storage[i];
     }
