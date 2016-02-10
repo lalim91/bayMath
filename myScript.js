@@ -46,7 +46,15 @@ $(document).ready(function(){
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
 function store_number(button_value){
-    input_storage[current_index] += button_value;
+    if (typeof input_storage[current_index] == "number"){
+        input_storage[current_index] = button_value;
+    }else if (input_storage[current_index] == "error"){
+        input_storage[current_index] = button_value;
+        }
+    else{
+        input_storage[current_index] += button_value;
+    }
+
     update_display();
 }
 
@@ -59,10 +67,18 @@ function store_number(button_value){
     //input_storage: where everything clicked will be stored in strings
     //current_index: the index of the most current position; where we are right now
 function store_operator(button_value){
-    current_index +=1;
-    input_storage[current_index] = button_value;
-    current_index +=1;
-    input_storage[current_index] = "";
+    if ((input_storage[current_index]) == ""){
+        (input_storage[current_index-1]) = button_value;
+    }else if (input_storage[current_index] == "error"){
+        clear_display();
+    }
+    else{
+        current_index +=1;
+        input_storage[current_index] = button_value;
+        current_index +=1;
+        input_storage[current_index] = "";
+    }
+
     update_display();
 }
 
@@ -146,8 +162,13 @@ function clear_display(){
                 result = op1 * op2;
                 break;
             case '/':
-                result = op1 / op2;
-                break;
+                if(op2==0 && op1 != 0){
+                    return "error";
+                }else{
+                    result = op1 / op2;
+                    break;
+                }
+
         }
         return result;
     }
@@ -187,6 +208,7 @@ function clear_display(){
             }
         }
         update_display();
+        current_index = 0;
         fist_bump()
     }
 
