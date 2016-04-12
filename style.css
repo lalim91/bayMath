@@ -1,0 +1,25 @@
+/*******************************************************************
+GENERAL
+*******************************************************************/
+
+body {
+    position: relative;
+    height:100vh;
+    width:100vw;
+    background-image: url("./image/BigHero6Team1.png");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+}
+
+
+/********************************
+BayMath
+*********************************/
+
+.calc{
+    height: 65vh;
+    border: 1px solid blue;
+    right: 2%;
+
+}
