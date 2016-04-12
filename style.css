@@ -19,7 +19,33 @@ BayMath
 
 .calc{
     height: 65vh;
-    border: 1px solid blue;
     right: 2%;
-
+    position:relative;
+}
+#eyes{
+    height: 5%;
+    width: 34%;
+    border: 1px solid blue;
+    position: absolute;
+    top: 14%;
+    left: 36%;
+}
+#screen{
+    height: 12%;
+    width: 41%;
+    border: 1px solid gray;
+    border-radius:25%;
+    position: absolute;
+    top: 33%;
+    left: 27%;
+}
+#numbers{
+    height: 34%;
+    width: 85%;
+    /*border: 1px solid blue;*/
+    position: absolute;
+    top: 46%;
+}
+.btn{
+    border-radius:50%;
 }
