@@ -19,7 +19,58 @@ BayMath
 
 .calc{
     height: 65vh;
-    border: 1px solid blue;
     right: 2%;
-
+    position:relative;
+}
+#face{
+    height: 4%;
+    width: 23%;
+    /* border: 1px solid blue; */
+    position: absolute;
+    top: 15%;
+    left: 41%;
+    transform: rotate(6deg);
+}
+.eye{
+    border-radius: 100%;
+    background: black;
+    width: 22%;
+    height: 74%;
+}
+.eye:last-child {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.eyeBlink{
+    transform: scale(1,.05);
+}
+.mouth{
+    background: black;
+    height: 4%;
+    top: 38%;
+    left: 0;
+    position: absolute;
+    width: 89%;
+    margin: 0 2.5%;
+}
+#screen{
+    height: 12%;
+    width: 41%;
+    border: 1px solid gray;
+    border-radius:25%;
+    position: absolute;
+    top: 33%;
+    left: 27%;
+    text-align:center;
+}
+#numbers{
+    height: 34%;
+    width: 85%;
+    /*border: 1px solid blue;*/
+    position: absolute;
+    top: 46%;
+}
+.btn{
+    border-radius:50%;
 }
