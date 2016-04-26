@@ -17,4 +17,4 @@
 
 ![alt text](https://cloud.githubusercontent.com/assets/16481856/14808815/4fabac00-0b3d-11e6-905c-6c1176d967f8.png "Old Baymath")
 
-![alt text](https://cloud.githubusercontent.com/assets/16481856/14808825/5b59b646-0b3d-11e6-9925-85a133743f3b.png "New Baymath")
+![alt text](https://cloud.githubusercontent.com/assets/16481856/14808883/e3a9417e-0b3d-11e6-905b-5077cdde9f92.png "New Baymath")
