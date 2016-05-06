@@ -46,7 +46,7 @@ var calculator = function(){
         for (var i = 0; i < inputStorage.length; i++) {
             output += inputStorage[i];
         }
-        $('#screen').text(output);
+        $('.screen').text(output);
     };
 
     this.clearDisplay = function(){
